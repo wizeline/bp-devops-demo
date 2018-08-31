@@ -1,0 +1,18 @@
+FROM python:3-alpine
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN apk add --no-cache \
+    linux-headers \
+    musl-dev \
+    git \
+    openssh-client \
+    gcc \
+    python3-dev
+RUN pip install setuptools \
+    && pip install pylint==1.7.2 \
+    && pip install -r requirements.txt
+
+COPY . .
+CMD ["ash", "-c", "python tests.py"]

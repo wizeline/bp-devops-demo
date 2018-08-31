@@ -1,0 +1,19 @@
+version: '3.2'
+
+services:
+  app:
+    build: .
+    ports:
+      - '8000:8000'
+    environment:
+      - MESSAGE=hello
+
+  lint:
+    build:
+      context: .
+      dockerfile: Dockerfile.lint
+
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.unit-tests
