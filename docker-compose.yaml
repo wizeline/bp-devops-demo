@@ -8,6 +8,13 @@ services:
     environment:
       - MESSAGE=hello
 
+  app-manager:
+    build: .
+    ports:
+      - '8000:8000'
+    env_file:
+      - .env
+
   lint:
     build:
       context: .
